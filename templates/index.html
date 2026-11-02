@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ lý AI Khoa Kỹ thuật Điện tử 1 (SEA - PTIT)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Marked JS for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .prose p { margin-bottom: 0.5rem; }
+        .prose ul, .prose ol { margin-left: 1.25rem; margin-bottom: 0.5rem; }
+        .prose li { list-style-type: disc; }
+        .prose strong { color: #1e3a8a; }
+        .prose a { color: #2563eb; text-decoration: underline; }
+        .prose a:hover { color: #1d4ed8; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-80 bg-slate-900 text-slate-100 flex flex-col flex-shrink-0 border-r border-slate-800">
+        <!-- Logo & Header -->
+        <div class="p-4 border-b border-slate-800 flex items-center space-x-3 bg-slate-950/40">
+            <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-red-500/30">
+                SEA
+            </div>
+            <div>
+                <h1 class="font-bold text-sm tracking-wide text-white">Khoa Kỹ thuật Điện tử 1</h1>
+                <p class="text-xs text-red-400 font-medium">Học viện CNBCVT (PTIT)</p>
+            </div>
+        </div>
+
+        <!-- System Stats -->
+        <div class="px-4 py-3 bg-slate-800/50 border-b border-slate-800 text-xs text-slate-300 space-y-1.5">
+            <div class="flex justify-between items-center">
+                <span class="flex items-center text-emerald-400 font-medium">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>RAG CSDL Đã nạp
+                </span>
+                <span class="bg-slate-700 px-2 py-0.5 rounded text-white font-mono text-[11px]">722 Chunks</span>
+            </div>
+            <div class="flex justify-between text-slate-400 text-[11px]">
+                <span>Tài liệu: 248 trang & bài viết</span>
+                <span>FastEmbed 256D</span>
+            </div>
+        </div>
+
+        <!-- Quick Prompts List -->
+        <div class="flex-1 overflow-y-auto custom-scroll p-3 space-y-2">
+            <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase px-2 pt-2">
+                Gợi ý câu hỏi nhanh
+            </div>
+
+            <button onclick="askPreset('TS. Nguyễn Trung Hiếu - Trưởng khoa Kỹ thuật Điện tử 1 có lý lịch và hướng nghiên cứu như thế nào?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-user-tie text-blue-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">TS. Nguyễn Trung Hiếu - Trưởng khoa KTĐT1</span>
+            </button>
+
+            <button onclick="askPreset('PGS.TS. Phạm Minh Triển nghiên cứu về những lĩnh vực nào và email liên hệ là gì?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-robot text-purple-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">PGS.TS. Phạm Minh Triển: UAV, Robotics, IoT</span>
+            </button>
+
+            <button onclick="askPreset('Chương trình đào tạo ngành Công nghệ kỹ thuật Điện - Điện tử của Khoa năm 2023 gồm những nội dung gì?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-graduation-cap text-amber-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">Chương trình đào tạo Điện - Điện tử 2023</span>
+            </button>
+
+            <button onclick="askPreset('Chính sách học bổng theo Nghị định 179/2026/NĐ-CP của Chính phủ cho sinh viên Khoa như thế nào?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-award text-emerald-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">Học bổng Nghị định 179/2026/NĐ-CP</span>
+            </button>
+
+            <button onclick="askPreset('Khoa KTĐT1 có những phòng thí nghiệm và trang thiết bị thực hành nào?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-microchip text-rose-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">Hệ thống Lab Rạng Đông, Lab EDA, Lab EIC</span>
+            </button>
+
+            <button onclick="askPreset('Câu lạc bộ Điện tử PTIT và Liên chi đoàn Khoa có những hoạt động gì nổi bật?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-users text-cyan-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">CLB Điện tử PTIT & Hoạt động Đoàn</span>
+            </button>
+
+            <button onclick="askPreset('Danh sách các doanh nghiệp đối tác đang hợp tác với Khoa Kỹ thuật Điện tử 1?')"
+                    class="w-full text-left p-2.5 rounded-lg text-xs bg-slate-800/60 hover:bg-slate-800 text-slate-200 hover:text-white transition border border-slate-700/50 hover:border-blue-500/50 flex items-start space-x-2.5 group">
+                <i class="fa-solid fa-handshake text-orange-400 mt-0.5 group-hover:scale-110 transition"></i>
+                <span class="line-clamp-2">Danh sách Doanh nghiệp đối tác</span>
+            </button>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="p-3 border-t border-slate-800 bg-slate-950/60 text-[11px] text-slate-400 text-center">
+            <span>© Khoa Kỹ thuật Điện tử 1 - PTIT</span>
+        </div>
+    </aside>
+
+    <!-- MAIN CHAT AREA -->
+    <main class="flex-1 flex flex-col bg-white overflow-hidden">
+        <!-- Top Navbar -->
+        <header class="h-14 border-b border-slate-200 px-6 flex items-center justify-between bg-white/80 backdrop-blur z-10 flex-shrink-0">
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <span class="font-bold text-slate-800 text-base">Hệ thống Hỏi đáp Tri thức RAG</span>
+                    <span class="px-2 py-0.5 bg-red-100 text-red-700 rounded-full text-xs font-semibold">Khoa KTĐT1</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <span class="text-xs text-slate-500 hidden sm:inline">Nguồn: <a href="https://sea.ptit.edu.vn" target="_blank" class="text-blue-600 hover:underline font-medium">https://sea.ptit.edu.vn</a></span>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-3 text-xs">
+                <button onclick="clearChat()" title="Xóa lịch sử hội thoại" class="flex items-center space-x-1.5 px-3 py-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg border border-slate-200 transition">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span>Xóa hội thoại</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Messages Container -->
+        <div id="messagesContainer" class="flex-1 overflow-y-auto custom-scroll p-6 space-y-6">
+            <!-- Welcome Bot Message -->
+            <div class="flex items-start space-x-3 max-w-3xl">
+                <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl rounded-tl-sm p-4 text-sm text-slate-700 shadow-sm leading-relaxed">
+                    <p class="font-semibold text-blue-900 mb-1">Xin chào bạn! Tôi là Trợ lý AI của Khoa Kỹ thuật Điện tử 1 (SEA - PTIT).</p>
+                    <p class="mb-2">Hệ thống đã được nạp toàn bộ cơ sở tri thức mới nhất từ website chính thức của Khoa (<strong class="text-slate-800">248 bài viết & trang tĩnh, 722 đoạn trích</strong>), bao gồm:</p>
+                    <ul class="list-disc ml-5 space-y-1 text-slate-600 text-xs mb-3">
+                        <li>Thông tin lý lịch khoa học, học hàm, học vị, email và hướng nghiên cứu của các Thầy Cô trong Khoa.</li>
+                        <li>Chương trình đào tạo kỹ sư ngành Công nghệ Kỹ thuật Điện - Điện tử.</li>
+                        <li>Các thông báo tuyển sinh, học bổng theo Nghị định 179, đề tài NCKH, hợp tác quốc tế.</li>
+                        <li>Hệ thống phòng Lab chuyên sâu (Lab Rạng Đông, EDA, EIC) và các doanh nghiệp đối tác.</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 italic">💡 Bạn hãy chọn các câu hỏi gợi ý nhanh ở thanh bên trái hoặc đặt câu hỏi trực tiếp để tra cứu và hỏi đáp thông tin Khoa KTĐT1!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Box Area -->
+        <div class="p-4 bg-white border-t border-slate-200 flex-shrink-0">
+            <div class="max-w-4xl mx-auto relative">
+                <div class="flex items-end bg-slate-50 border border-slate-300 rounded-2xl p-2 shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
+                    <textarea id="queryInput" rows="1" placeholder="Hỏi bất cứ điều gì về Khoa KTĐT1 (Enter để gửi, Shift+Enter xuống dòng)..."
+                              class="flex-1 bg-transparent border-0 px-3 py-2 text-sm text-slate-800 focus:outline-none resize-none max-h-32 custom-scroll"></textarea>
+                    
+                    <button id="sendBtn" onclick="sendMessage()"
+                            class="w-10 h-10 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition shadow-md shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed ml-2 flex-shrink-0">
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </div>
+                <div class="flex justify-between items-center mt-1.5 px-3 text-[11px] text-slate-400">
+                    <span>Mọi thông tin được đối chuẩn trực tiếp từ <a href="https://sea.ptit.edu.vn" target="_blank" class="hover:text-blue-600 underline">sea.ptit.edu.vn</a></span>
+                    <span id="latencyIndicator"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JS LOGIC -->
+    <script>
+        const input = document.getElementById('queryInput');
+        const container = document.getElementById('messagesContainer');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Tự động co giãn textarea
+        input.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function askPreset(question) {
+            input.value = question;
+            sendMessage();
+        }
+
+        function clearChat() {
+            if (confirm('Bạn có muốn xóa toàn bộ lịch sử tin nhắn trong phiên này?')) {
+                const welcomeMsg = container.children[0];
+                container.innerHTML = '';
+                if (welcomeMsg) container.appendChild(welcomeMsg);
+            }
+        }
+
+        async function sendMessage() {
+            const q = input.value.trim();
+            if (!q) return;
+
+            input.value = '';
+            input.style.height = 'auto';
+
+            // 1. Thêm tin nhắn User
+            appendUserMessage(q);
+
+            // 2. Thêm tin nhắn Bot trạng thái Loading
+            const botMsgId = 'bot_' + Date.now();
+            appendBotLoading(botMsgId);
+
+            // Cuộn xuống
+            container.scrollTop = container.scrollHeight;
+            sendBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: q,
+                        top_k: 5
+                    })
+                });
+
+                const data = await res.json();
+                updateBotMessage(botMsgId, data);
+            } catch (err) {
+                updateBotError(botMsgId, 'Đã xảy ra lỗi khi kết nối máy chủ RAG: ' + err.message);
+            } finally {
+                sendBtn.disabled = false;
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function appendUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'flex justify-end';
+            div.innerHTML = `
+                <div class="max-w-2xl bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 text-sm shadow-sm leading-relaxed">
+                    ${escapeHtml(text)}
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function appendBotLoading(id) {
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'flex items-start space-x-3 max-w-3xl';
+            div.innerHTML = `
+                <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="flex-1 bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-4 shadow-sm text-sm text-slate-500 flex items-center space-x-3">
+                    <i class="fa-solid fa-spinner fa-spin text-blue-600 text-base"></i>
+                    <span>Đang truy xuất CSDL Khoa KTĐT1 và tổng hợp câu trả lời...</span>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function updateBotMessage(id, data) {
+            const div = document.getElementById(id);
+            if (!div) return;
+
+            const isGenerated = data.source === 'gemini';
+            const answerHtml = marked.parse(data.answer);
+
+            let citationsHtml = '';
+            if (data.citations && data.citations.length > 0) {
+                citationsHtml = `
+                    <div class="mt-4 pt-3 border-t border-slate-100">
+                        <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-bookmark text-blue-500 mr-1.5"></i>Tài liệu nguồn từ Khoa KTĐT1 (${data.citations.length} nguồn tham chiếu):
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            ${data.citations.map(c => `
+                                <a href="${c.url}" target="_blank" class="inline-flex items-center text-xs bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 px-2.5 py-1 rounded-md border border-slate-200 transition">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] mr-1.5 text-slate-400"></i>
+                                    <span class="font-medium truncate max-w-[200px]">${escapeHtml(c.title)}</span>
+                                    <span class="ml-1.5 text-[10px] text-emerald-600 font-mono font-semibold">(${(c.score * 100).toFixed(0)}%)</span>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Accordion xem đoạn trích gốc
+            let rawChunksHtml = '';
+            if (data.raw_chunks && data.raw_chunks.length > 0) {
+                const accId = 'acc_' + id;
+                rawChunksHtml = `
+                    <div class="mt-3">
+                        <button onclick="toggleAccordion('${accId}')" class="text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-1 focus:outline-none">
+                            <i id="icon_${accId}" class="fa-solid fa-chevron-right text-[10px] transition-transform"></i>
+                            <span>Chi tiết ${data.raw_chunks.length} đoạn trích gốc từ ChromaDB</span>
+                        </button>
+                        <div id="${accId}" class="hidden mt-2 space-y-2 border-l-2 border-blue-200 pl-3">
+                            ${data.raw_chunks.map((chk, idx) => `
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-xs text-slate-600">
+                                    <div class="flex justify-between font-semibold text-slate-800 mb-1">
+                                        <span>[Đoạn ${idx+1}] ${escapeHtml(chk.title)}</span>
+                                        <span class="text-emerald-600 font-mono">Sim: ${(chk.score).toFixed(4)}</span>
+                                    </div>
+                                    <p class="text-slate-600 text-[11px] font-mono whitespace-pre-wrap">${escapeHtml(chk.text)}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            const modelBadge = isGenerated
+                ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-100 text-blue-700 ml-2">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Trợ lý AI
+                   </span>`
+                : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 ml-2">
+                    <i class="fa-solid fa-database mr-1"></i>Truy xuất CSDL
+                   </span>`;
+
+            div.innerHTML = `
+                <div class="w-9 h-9 rounded-full ${isGenerated ? 'bg-purple-600' : 'bg-blue-600'} text-white flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+                    <i class="fa-solid ${isGenerated ? 'fa-wand-magic-sparkles' : 'fa-robot'}"></i>
+                </div>
+                <div class="flex-1 bg-white border border-slate-200 rounded-2xl rounded-tl-sm p-5 shadow-sm text-sm text-slate-800 leading-relaxed">
+                    <div class="flex justify-between items-center mb-2 pb-2 border-b border-slate-100 text-xs text-slate-400">
+                        <div class="flex items-center">
+                            <span class="font-semibold text-slate-700">Trợ lý AI Khoa KTĐT1</span>
+                            ${modelBadge}
+                        </div>
+                        <span>${data.latency_ms ? data.latency_ms.toFixed(1) + ' ms' : ''}</span>
+                    </div>
+
+                    <div class="prose max-w-none text-slate-700">
+                        ${answerHtml}
+                    </div>
+
+                    ${citationsHtml}
+                    ${rawChunksHtml}
+                </div>
+            `;
+
+            if (data.latency_ms) {
+                document.getElementById('latencyIndicator').textContent = `Độ trễ: ${data.latency_ms.toFixed(1)} ms`;
+            }
+        }
+
+        function updateBotError(id, errMsg) {
+            const div = document.getElementById(id);
+            if (!div) return;
+            div.innerHTML = `
+                <div class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="flex-1 bg-red-50 border border-red-200 rounded-2xl rounded-tl-sm p-4 shadow-sm text-sm text-red-700">
+                    <strong>Lỗi:</strong> ${escapeHtml(errMsg)}
+                </div>
+            `;
+        }
+
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const icon = document.getElementById('icon_' + id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                icon.classList.add('rotate-90');
+            } else {
+                el.classList.add('hidden');
+                icon.classList.remove('rotate-90');
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,755 @@
+{
+  "timestamp": "2026-10-29 16:52:19",
+  "hardware": {
+    "cpu": "Intel Core i7-7700HQ @ 2.80GHz",
+    "cores": "4 cores / 8 threads",
+    "ram": "16 GB DDR4",
+    "runtime": "ONNX Runtime CPU Execution Provider (AVX2)"
+  },
+  "benchmark_results": {
+    "Fixed-size (250w, 0ov)": {
+      "chunk_count": 318,
+      "bge_index_time_s": 70.6321339999995,
+      "minilm_index_time_s": 17.47541710000951,
+      "summary": {
+        "BM25": {
+          "hit@1": 0.675,
+          "hit@3": 0.85,
+          "hit@5": 0.925,
+          "mrr@5": 0.75625,
+          "recall@5": 0.925,
+          "ndcg@5": 0.7980739856947909,
+          "latency_ms": 3.8246599997364683
+        },
+        "MiniLM-L6-v2": {
+          "hit@1": 0.625,
+          "hit@3": 0.875,
+          "hit@5": 0.875,
+          "mrr@5": 0.7291666666666666,
+          "recall@5": 0.875,
+          "ndcg@5": 0.7663662191964322,
+          "latency_ms": 10.353207500520512
+        },
+        "BGE-small-v1.5": {
+          "hit@1": 0.525,
+          "hit@3": 0.8,
+          "hit@5": 0.9,
+          "mrr@5": 0.6695833333333334,
+          "recall@5": 0.9,
+          "ndcg@5": 0.7273847689113732,
+          "latency_ms": 42.49463749874849
+        }
+      }
+    },
+    "Sliding Window (250w, 50ov)": {
+      "chunk_count": 398,
+      "bge_index_time_s": 90.89497739999206,
+      "minilm_index_time_s": 20.685280499994406,
+      "summary": {
+        "BM25": {
+          "hit@1": 0.575,
+          "hit@3": 0.85,
+          "hit@5": 0.9,
+          "mrr@5": 0.6987500000000001,
+          "recall@5": 0.9,
+          "ndcg@5": 0.7493044533291305,
+          "latency_ms": 5.331759998080088
+        },
+        "MiniLM-L6-v2": {
+          "hit@1": 0.575,
+          "hit@3": 0.775,
+          "hit@5": 0.9,
+          "mrr@5": 0.6929166666666667,
+          "recall@5": 0.9,
+          "ndcg@5": 0.7440916577110076,
+          "latency_ms": 7.687307499509188
+        },
+        "BGE-small-v1.5": {
+          "hit@1": 0.65,
+          "hit@3": 0.875,
+          "hit@5": 0.95,
+          "mrr@5": 0.7633333333333333,
+          "recall@5": 0.95,
+          "ndcg@5": 0.8100713672809654,
+          "latency_ms": 40.31453999887162
+        }
+      }
+    },
+    "Recursive Structure-aware": {
+      "chunk_count": 379,
+      "bge_index_time_s": 74.0892187999998,
+      "minilm_index_time_s": 18.55207550000341,
+      "summary": {
+        "BM25": {
+          "hit@1": 0.625,
+          "hit@3": 0.825,
+          "hit@5": 0.9,
+          "mrr@5": 0.7341666666666667,
+          "recall@5": 0.9,
+          "ndcg@5": 0.7758446111202518,
+          "latency_ms": 4.107697501240182
+        },
+        "MiniLM-L6-v2": {
+          "hit@1": 0.575,
+          "hit@3": 0.85,
+          "hit@5": 0.925,
+          "mrr@5": 0.6995833333333333,
+          "recall@5": 0.925,
+          "ndcg@5": 0.7557025296707077,
+          "latency_ms": 7.436797499758541
+        },
+        "BGE-small-v1.5": {
+          "hit@1": 0.6,
+          "hit@3": 0.9,
+          "hit@5": 0.925,
+          "mrr@5": 0.7341666666666666,
+          "recall@5": 0.925,
+          "ndcg@5": 0.7825840270558686,
+          "latency_ms": 37.95384249970084
+        }
+      }
+    }
+  },
+  "sample_query_logs": [
+    {
+      "qid": "Q01",
+      "query": "What is the mathematical formulation of the marginal probability for RAG-Sequence model?",
+      "target": "lewis2020",
+      "bge_top1_doc": "lewis2020",
+      "bge_top1_score": 0.7905512452125549,
+      "bge_top_ranks": [
+        "lewis2020",
+        "lewis2020",
+        "zhao2024",
+        "lewis2020",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q02",
+      "query": "How does RAG-Token marginalize over retrieved documents at each target token generation step?",
+      "target": "lewis2020",
+      "bge_top1_doc": "lewis2020",
+      "bge_top1_score": 0.8267332911491394,
+      "bge_top_ranks": [
+        "lewis2020",
+        "lewis2020",
+        "lewis2020",
+        "lewis2020",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q03",
+      "query": "What is the fast decoding approximation technique for RAG-Sequence proposed by Lewis et al.?",
+      "target": "lewis2020",
+      "bge_top1_doc": "lewis2020",
+      "bge_top1_score": 0.7903551459312439,
+      "bge_top_ranks": [
+        "lewis2020",
+        "lewis2020",
+        "zhao2024",
+        "lewis2020",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q04",
+      "query": "Which pretrained bi-encoder architecture and generator model are used in the original RAG paper?",
+      "target": "lewis2020",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.7552551031112671,
+      "bge_top_ranks": [
+        "zhao2024",
+        "zhao2024",
+        "zhao2024",
+        "lewis2020",
+        "zhao2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q05",
+      "query": "How does Lewis et al. train the retriever and generator components jointly using backpropagation?",
+      "target": "lewis2020",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.782780647277832,
+      "bge_top_ranks": [
+        "gao2023",
+        "zhao2024",
+        "zhao2024",
+        "huang2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 0.0
+    },
+    {
+      "qid": "Q06",
+      "query": "What are the benchmark performance results of RAG on Open-Domain QA tasks such as Natural Questions and CuratedTREC?",
+      "target": "lewis2020",
+      "bge_top1_doc": "lewis2020",
+      "bge_top1_score": 0.8357572555541992,
+      "bge_top_ranks": [
+        "lewis2020",
+        "lewis2020",
+        "lewis2020",
+        "zhao2024",
+        "huang2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q07",
+      "query": "How does RAG perform on the Jeopardy question generation task compared to pure BART?",
+      "target": "lewis2020",
+      "bge_top1_doc": "lewis2020",
+      "bge_top1_score": 0.8616616129875183,
+      "bge_top_ranks": [
+        "lewis2020",
+        "lewis2020",
+        "lewis2020",
+        "lewis2020",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q08",
+      "query": "What is the effect of varying the number of retrieved documents k during inference in Lewis et al.?",
+      "target": "lewis2020",
+      "bge_top1_doc": "lewis2020",
+      "bge_top1_score": 0.7228401303291321,
+      "bge_top_ranks": [
+        "lewis2020",
+        "huang2024",
+        "huang2024",
+        "gao2023",
+        "huang2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q09",
+      "query": "What are the structural differences between Naive RAG, Advanced RAG, and Modular RAG paradigms?",
+      "target": "gao2023",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.725148618221283,
+      "bge_top_ranks": [
+        "gao2023",
+        "gao2023",
+        "gao2023",
+        "gao2023",
+        "gao2023"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q10",
+      "query": "What are the core pre-retrieval optimization techniques in Advanced RAG such as query rewriting and HyDE?",
+      "target": "gao2023",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.8409450054168701,
+      "bge_top_ranks": [
+        "gao2023",
+        "huang2024",
+        "gao2023",
+        "gao2023",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q11",
+      "query": "How does post-retrieval processing optimize context using cross-encoder reranking and context compression?",
+      "target": "gao2023",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.8521817922592163,
+      "bge_top_ranks": [
+        "gao2023",
+        "huang2024",
+        "zhao2024",
+        "huang2024",
+        "lewis2020"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q12",
+      "query": "What are the core evaluation metrics of the RAGAS framework including Faithfulness and Answer Relevance?",
+      "target": "gao2023",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.7953786849975586,
+      "bge_top_ranks": [
+        "zhao2024",
+        "gao2023",
+        "huang2024",
+        "gao2023",
+        "gao2023"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q13",
+      "query": "How does Modular RAG incorporate specialized modules like Search, Memory, and Predict?",
+      "target": "gao2023",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.8039340376853943,
+      "bge_top_ranks": [
+        "gao2023",
+        "gao2023",
+        "gao2023",
+        "gao2023",
+        "huang2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q14",
+      "query": "What are the multi-hop reasoning challenges and iterative retrieval strategies in RAG systems?",
+      "target": "gao2023",
+      "bge_top1_doc": "huang2024",
+      "bge_top1_score": 0.8245435357093811,
+      "bge_top_ranks": [
+        "huang2024",
+        "zhao2024",
+        "gao2023",
+        "gao2023",
+        "gao2023"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q15",
+      "query": "What are the trade-offs between dense retrieval, sparse retrieval, and hybrid retrieval mentioned by Gao et al.?",
+      "target": "gao2023",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.7856577634811401,
+      "bge_top_ranks": [
+        "zhao2024",
+        "zhao2024",
+        "huang2024",
+        "gao2023",
+        "lewis2020"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q16",
+      "query": "How does external retrieval augment the training and fine-tuning phases of LLMs according to the survey?",
+      "target": "gao2023",
+      "bge_top1_doc": "huang2024",
+      "bge_top1_score": 0.8363021612167358,
+      "bge_top_ranks": [
+        "huang2024",
+        "gao2023",
+        "gao2023",
+        "huang2024",
+        "gao2023"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q17",
+      "query": "What is the four-stage classification of RAG based on augmentation stages: query-based, latent-based, logit-based, and speculative?",
+      "target": "zhao2024",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.735143780708313,
+      "bge_top_ranks": [
+        "gao2023",
+        "huang2024",
+        "zhao2024",
+        "zhao2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q18",
+      "query": "How does latent representation-based RAG fuse retrieved representations into hidden states?",
+      "target": "zhao2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.8277828693389893,
+      "bge_top_ranks": [
+        "zhao2024",
+        "gao2023",
+        "gao2023",
+        "zhao2024",
+        "lewis2020"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q19",
+      "query": "What is logit-based RAG and how does it adjust output probability distributions using kNN-LM?",
+      "target": "zhao2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.835343599319458,
+      "bge_top_ranks": [
+        "zhao2024",
+        "lewis2020",
+        "gao2023",
+        "huang2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q20",
+      "query": "What is Speculative RAG and how does it utilize a smaller drafter model with parallel verification?",
+      "target": "zhao2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.7254021763801575,
+      "bge_top_ranks": [
+        "zhao2024",
+        "zhao2024",
+        "zhao2024",
+        "gao2023",
+        "lewis2020"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q21",
+      "query": "How is RAG extended to multimodal AI-generated content including images, code, and audio generation?",
+      "target": "zhao2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.8231224417686462,
+      "bge_top_ranks": [
+        "zhao2024",
+        "gao2023",
+        "huang2024",
+        "zhao2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q22",
+      "query": "What are the common retrieval objects in multimodal RAG such as image patches and audio spectrograms?",
+      "target": "zhao2024",
+      "bge_top1_doc": "huang2024",
+      "bge_top1_score": 0.7890880107879639,
+      "bge_top_ranks": [
+        "huang2024",
+        "huang2024",
+        "gao2023",
+        "gao2023",
+        "huang2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 0.0
+    },
+    {
+      "qid": "Q23",
+      "query": "What evaluation benchmarks and metrics are surveyed for AI-Generated Content in Zhao et al.?",
+      "target": "zhao2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.7163985967636108,
+      "bge_top_ranks": [
+        "zhao2024",
+        "gao2023",
+        "zhao2024",
+        "huang2024",
+        "gao2023"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q24",
+      "query": "What are the prospective future challenges for RAG in long-form generation and dynamic knowledge updates?",
+      "target": "zhao2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.8308842182159424,
+      "bge_top_ranks": [
+        "zhao2024",
+        "zhao2024",
+        "gao2023",
+        "zhao2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q25",
+      "query": "What are the multi-step interaction paradigms between retriever and generator: iterative, recursive, and adaptive?",
+      "target": "huang2024",
+      "bge_top1_doc": "zhao2024",
+      "bge_top1_score": 0.7535159587860107,
+      "bge_top_ranks": [
+        "zhao2024",
+        "gao2023",
+        "huang2024",
+        "gao2023",
+        "zhao2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q26",
+      "query": "How does Self-RAG train reflection tokens to decide when to retrieve and critique output quality?",
+      "target": "huang2024",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.7902141809463501,
+      "bge_top_ranks": [
+        "gao2023",
+        "huang2024",
+        "gao2023",
+        "zhao2024",
+        "lewis2020"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q27",
+      "query": "What is Corrective RAG (CRAG) and how does it evaluate retrieval confidence with web fallback?",
+      "target": "huang2024",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.7528889179229736,
+      "bge_top_ranks": [
+        "gao2023",
+        "zhao2024",
+        "huang2024",
+        "gao2023",
+        "huang2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q28",
+      "query": "What are the typical retrieval failure modes analyzed: retrieval noise, negative rejection, and false negative errors?",
+      "target": "huang2024",
+      "bge_top1_doc": "huang2024",
+      "bge_top1_score": 0.7439426779747009,
+      "bge_top_ranks": [
+        "huang2024",
+        "huang2024",
+        "gao2023",
+        "lewis2020",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q29",
+      "query": "How do active retrieval mechanisms decide when retrieval is necessary during text generation?",
+      "target": "huang2024",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.8005826473236084,
+      "bge_top_ranks": [
+        "gao2023",
+        "huang2024",
+        "gao2023",
+        "huang2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q30",
+      "query": "What is the comparison between RAG and long-context language models in terms of cost, latency, and memory?",
+      "target": "huang2024",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.8099389672279358,
+      "bge_top_ranks": [
+        "gao2023",
+        "gao2023",
+        "gao2023",
+        "gao2023",
+        "huang2024"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q31",
+      "query": "How does prompt compression reduce token cost and eliminate distracting information before generation?",
+      "target": "huang2024",
+      "bge_top1_doc": "huang2024",
+      "bge_top1_score": 0.714962363243103,
+      "bge_top_ranks": [
+        "huang2024",
+        "zhao2024",
+        "zhao2024",
+        "zhao2024",
+        "zhao2024"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q32",
+      "query": "What are the security vulnerabilities of RAG such as prompt injection and corpus poisoning attacks?",
+      "target": "huang2024",
+      "bge_top1_doc": "gao2023",
+      "bge_top1_score": 0.6703933477401733,
+      "bge_top_ranks": [
+        "gao2023",
+        "huang2024",
+        "gao2023",
+        "zhao2024",
+        "gao2023"
+      ],
+      "bge_hit@1": 0.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q33",
+      "query": "What is the structure of the KILT benchmark and how many tasks across how many domains does it include?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.7682790756225586,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q34",
+      "query": "How does KILT map disparate knowledge-intensive NLP tasks to a single unified Wikipedia knowledge source?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.8857412934303284,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q35",
+      "query": "What is the KILT-AC provenance-aware evaluation metric that requires both task accuracy and correct provenance citation?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.8250157237052917,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q36",
+      "query": "What Wikipedia snapshot version is used as the standardized non-parametric memory in KILT?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.7510159611701965,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q37",
+      "query": "How does KILT define provenance tracking at the document, section, and paragraph levels?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.7991910576820374,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q38",
+      "query": "What are the baseline model architectures evaluated on the KILT leaderboard including DPR, RAG, and BART?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.7489407658576965,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q39",
+      "query": "What are the findings regarding the discrepancy between task accuracy and provenance accuracy on KILT?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.7912486791610718,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    },
+    {
+      "qid": "Q40",
+      "query": "How does the FEVER fact-checking dataset adapt to the KILT unified formulation?",
+      "target": "petroni2021",
+      "bge_top1_doc": "petroni2021",
+      "bge_top1_score": 0.8044916987419128,
+      "bge_top_ranks": [
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021",
+        "petroni2021"
+      ],
+      "bge_hit@1": 1.0,
+      "bge_hit@5": 1.0
+    }
+  ]
+}

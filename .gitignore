@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environment and Secrets (CRITICAL)
+.env
+*.env
+!.env.example
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Temporary / Log files
+*.log
+test_*.docx
+test_*.png
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
